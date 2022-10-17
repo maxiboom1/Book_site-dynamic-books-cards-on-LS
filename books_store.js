@@ -31,20 +31,25 @@ function render(){
     for(let i = 0; i<master_cards_list.length; i++){ 
         const node = document.createElement("div");
         node.classList.add("col-3");
-        node.innerHTML = `
-        <div class="card" style="width: 12rem;">
-        <img src=${master_cards_list[i].imageUrl} height="260" class="card-img-top" alt="">
-        <div class="card-body">
-        <h5 class="card-title">${master_cards_list[i].title}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">${master_cards_list[i].autor}</h6>
-        <p class="card-text">${master_cards_list[i].description}</p>
-        <h6 class="card-subtitle mb-2 text-muted">Price: ${master_cards_list[i].price}$</h6>
-        </div>
-        </div>  
-        `
+        node.innerHTML = innerHTMLcreator(master_cards_list[i]);
         document.getElementById('dynamic_content').appendChild(node);
     }   
 
+}
+
+function innerHTMLcreator(bookObj){
+    let content = `
+    <div class="card" style="width: 12rem;">
+    <img src=${bookObj.imageUrl} height="260" class="card-img-top" alt="">
+    <div class="card-body">
+    <h5 class="card-title">${bookObj.title}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">${bookObj.autor}</h6>
+    <p class="card-text">${bookObj.description}</p>
+    <h6 class="card-subtitle mb-2 text-muted">Price: ${bookObj.price}$</h6>
+    </div>
+    </div>  
+    `
+    return content;
 }
 
 function onResetBookList(){
